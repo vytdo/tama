@@ -143,11 +143,16 @@ class Pet {
     }
   }
 
-  feed(amount, cost = 0) {
+  feed(amount, cost = 0, exp = 0) {
     if (!this.gameOver) {
       if (this.coins >= cost) {
         this.hunger = Math.min(this.hunger + amount, 100);
         this.coins -= cost;
+        this.exp += exp; // increase experience
+        if (this.exp >= this.level * 10) {
+          this.level++;
+          this.exp = 0;
+        }
         this.updateStats();
         this.updateCoins();
       } else {
@@ -240,19 +245,19 @@ document.getElementById("feed").addEventListener("click", () => {
 
 // Feed the pet when a food button is clicked
 document.getElementById("potato").addEventListener("click", () => {
-  pet.feed(3, 0); // potatoes are free
+  pet.feed(3, 0, 1); // potatoes give 1 experience point
   document.getElementById("foodModal").style.display = "none";
 });
 document.getElementById("bread").addEventListener("click", () => {
-  pet.feed(5, 1); // bread costs 1 coin
+  pet.feed(5, 1, 2); // bread gives 2 experience points
   document.getElementById("foodModal").style.display = "none";
 });
 document.getElementById("lollypop").addEventListener("click", () => {
-  pet.feed(2, 2); // lollypop costs 2 coins
+  pet.feed(2, 2, 3); // lollypop gives 3 experience points
   document.getElementById("foodModal").style.display = "none";
 });
 document.getElementById("sodaPop").addEventListener("click", () => {
-  pet.feed(1, 3); // soda pop costs 3 coins
+  pet.feed(1, 3, 4); // soda pop gives 4 experience points
   document.getElementById("foodModal").style.display = "none";
 });
 
