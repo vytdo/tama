@@ -246,10 +246,19 @@ button img.coinImage {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-#coinSmashCoin {
+#coinContainer {
   position: absolute;
-  cursor: pointer;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#gamePrompt {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 2em;
 }

@@ -273,6 +273,15 @@ document.getElementById("coinSmash").addEventListener("click", () => {
   // Increase the score when the coin is clicked
   document.getElementById("coinSmashCoin").addEventListener("click", () => {
     score++;
+
+    // Apply the "smash" animation
+    const coin = document.getElementById("coinSmashCoin");
+    coin.style.transform = "scale(1.5)";
+
+    // After a short delay, remove the "smash" animation
+    setTimeout(() => {
+      coin.style.transform = "scale(1)";
+    }, 100);
   });
 
   // End the game after 5 seconds
