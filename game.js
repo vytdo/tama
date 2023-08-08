@@ -16,10 +16,16 @@ class Pet {
     let petImg = document.getElementById("petImg");
     petImg.src = this.gender === "male" ? "pet_male.png" : "pet_female.png";
   }
-
   start(name) {
     this.name = name;
     document.getElementById("petNameDisplay").textContent = this.name;
+
+    // Set the initial position of the pet to the middle of the petArea
+    const petContainer = document.getElementById("petContainer");
+    const petArea = document.getElementById("petArea");
+    const middle = (petArea.offsetWidth - petContainer.offsetWidth) / 2;
+    petContainer.style.left = `${middle}px`;
+
     this.interval = setInterval(() => {
       this.hunger--;
       this.happiness--;
@@ -31,6 +37,33 @@ class Pet {
         this.endGame();
       }
     }, 1000);
+
+    // Start the pet movement
+    this.moveInterval = setInterval(() => {
+      this.move();
+    }, 1000);
+  }
+
+  move() {
+    // Get the pet container and pet area elements
+    const petContainer = document.getElementById("petContainer");
+    const petArea = document.getElementById("petArea");
+
+    // Calculate the maximum left position
+    const maxLeft = petArea.offsetWidth - petContainer.offsetWidth;
+
+    // Get the pet's current position
+    const currentLeft = parseInt(petContainer.style.left) || 0;
+
+    // Calculate a new position a small, random distance to the left or right
+    const movementDistance = Math.floor(Math.random() * 40) - 20;
+    let newLeft = currentLeft + movementDistance;
+
+    // Make sure the new position is within the pet area
+    newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+
+    // Update the pet container's position
+    petContainer.style.left = `${newLeft}px`;
   }
 
   endGame() {
@@ -45,6 +78,8 @@ class Pet {
 
     // Show the game over modal
     document.getElementById("gameOverModal").style.display = "block";
+
+    clearInterval(this.moveInterval);
   }
 
   updateStats() {
