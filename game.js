@@ -306,3 +306,95 @@ document.getElementById("numberRush").addEventListener("click", () => {
 document.getElementById("exitPlayModal").addEventListener("click", () => {
   document.getElementById("playModal").style.display = "none";
 });
+
+class NumberRushGame {
+  constructor() {
+    this.numbers = [];
+    this.currentNumber = 1;
+    this.gameArea = document.getElementById("numberRushGame");
+    this.score = 0;
+  }
+
+  start() {
+    this.timeLeft = 10;
+    this.updateTimer();
+    this.currentNumber = 1;
+    this.score = 0;
+    this.numbers = Array.from({ length: 10 }, (_, i) => i + 1);
+
+    this.timerInterval = setInterval(() => {
+      this.timeLeft--;
+      this.updateTimer();
+      if (this.timeLeft <= 0) {
+        this.end();
+      }
+    }, 1000);
+
+    this.numbers.forEach((number) => {
+      let numberElement = document.createElement("button");
+      numberElement.innerText = number;
+      numberElement.id = `number-${number}`;
+      numberElement.style.position = "absolute";
+      numberElement.style.left = `${20 + Math.random() * 60}vw`;
+      numberElement.style.top = `${30 + Math.random() * 50}vh`;
+      numberElement.addEventListener("click", () => this.clickNumber(number));
+      this.gameArea.appendChild(numberElement);
+    });
+
+    setTimeout(() => this.end(), 10000);
+  }
+
+  updateTimer() {
+    document.getElementById(
+      "numberRushTimer"
+    ).textContent = `Time left: ${this.timeLeft} seconds`;
+  }
+
+  clickNumber(number) {
+    if (number === this.currentNumber) {
+      document.getElementById(`number-${number}`).style.display = "none";
+      this.score++;
+      this.currentNumber++;
+    }
+
+    if (this.currentNumber > 10) {
+      this.end();
+    }
+  }
+
+  end() {
+    this.numbers.forEach((number) => {
+      let numberElement = document.getElementById(`number-${number}`);
+      this.gameArea.removeChild(numberElement);
+    });
+
+    // Add the score to the player's coins
+    pet.coins += this.score;
+
+    clearInterval(this.timerInterval);
+    // Increase their happiness by 5
+    pet.happiness = Math.min(pet.happiness + 5, 100);
+    pet.updateStats();
+    pet.updateCoins();
+    pet.paused = false;
+
+    // Hide the game container
+    document.getElementById("numberRushGame").style.display = "none";
+  }
+}
+
+const numberRushGame = new NumberRushGame();
+
+document.getElementById("numberRush").addEventListener("click", () => {
+  // Pause the game
+  pet.paused = true;
+
+  // Show the number rush game
+  document.getElementById("playModal").style.display = "none";
+  document.getElementById("numberRushGame").style.display = "block";
+
+  // Start the game
+  numberRushGame.start();
+});
+
+document.getElementById("numberRushGame").style.display = "none";
