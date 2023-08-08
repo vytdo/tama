@@ -60,9 +60,9 @@ class Pet {
     }
   }
 
-  feed() {
+  feed(amount) {
     if (!this.gameOver) {
-      this.hunger = Math.min(this.hunger + 20, 100);
+      this.hunger = Math.min(this.hunger + amount, 100);
       this.updateStats();
     }
   }
@@ -105,7 +105,7 @@ document.getElementById("startGame").addEventListener("click", () => {
 });
 
 // Connect buttons to pet actions
-document.getElementById("feed").addEventListener("click", () => pet.feed());
+
 document.getElementById("play").addEventListener("click", () => pet.play());
 document.getElementById("clean").addEventListener("click", () => pet.clean());
 
@@ -126,4 +126,32 @@ document.getElementById("instructionsButton").addEventListener("click", () => {
 // Hide the instructions when the close button is clicked
 document.getElementById("closeInstructions").addEventListener("click", () => {
   document.getElementById("instructionsModal").style.display = "none";
+});
+
+// Open the food modal when the feed button is clicked
+document.getElementById("feed").addEventListener("click", () => {
+  document.getElementById("foodModal").style.display = "block";
+});
+
+// Feed the pet when a food button is clicked
+document.getElementById("potato").addEventListener("click", () => {
+  pet.feed(3);
+  document.getElementById("foodModal").style.display = "none";
+});
+document.getElementById("bread").addEventListener("click", () => {
+  pet.feed(5);
+  document.getElementById("foodModal").style.display = "none";
+});
+document.getElementById("lollypop").addEventListener("click", () => {
+  pet.feed(2);
+  document.getElementById("foodModal").style.display = "none";
+});
+document.getElementById("sodaPop").addEventListener("click", () => {
+  pet.feed(1);
+  document.getElementById("foodModal").style.display = "none";
+});
+
+// Close the food modal when the exit button is clicked
+document.getElementById("exitFoodModal").addEventListener("click", () => {
+  document.getElementById("foodModal").style.display = "none";
 });
