@@ -11,20 +11,21 @@
         <h2>Choose food</h2>
         <button id="potato">
           <img src="potato.png" alt="Potato" />
-          Potato
+          Potato <img class="coinImage" src="coin.png" alt="Coins" /> 0
         </button>
         <button id="bread">
           <img src="bread.png" alt="Bread" />
-          Bread
+          Bread <img class="coinImage" src="coin.png" alt="Coins" /> 1
         </button>
         <button id="lollypop">
           <img src="lollypop.png" alt="Lollypop" />
-          Lollypop
+          Lollypop <img class="coinImage" src="coin.png" alt="Coins" /> 2
         </button>
         <button id="sodaPop">
           <img src="soda_pop.png" alt="Soda Pop" />
-          Soda Pop
+          Soda Pop <img class="coinImage" src="coin.png" alt="Coins" /> 3
         </button>
+
         <button id="exitFoodModal">Exit</button>
       </div>
     </div>
@@ -57,7 +58,13 @@
     </div>
 
     <div id="game">
-      <h1><span id="petNameDisplay"></span> <img id="genderIcon" /></h1>
+      <div id="header">
+        <h1><span id="petNameDisplay"></span> <img id="genderIcon" /></h1>
+        <div id="coins">
+          <img src="coin.png" alt="Coins" />
+          <span id="coinAmount"></span>
+        </div>
+      </div>
 
       <div id="petArea">
         <img id="petImg" alt="Your pet" />

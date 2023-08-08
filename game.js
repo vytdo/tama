@@ -8,6 +8,8 @@ class Pet {
     this.gameOver = false;
     this.startTime = Date.now();
     this.setPetImage();
+    this.coins = 20;
+    this.updateCoins();
   }
 
   setPetImage() {
@@ -60,11 +62,21 @@ class Pet {
     }
   }
 
-  feed(amount) {
+  feed(amount, cost = 0) {
     if (!this.gameOver) {
-      this.hunger = Math.min(this.hunger + amount, 100);
-      this.updateStats();
+      if (this.coins >= cost) {
+        this.hunger = Math.min(this.hunger + amount, 100);
+        this.coins -= cost;
+        this.updateStats();
+        this.updateCoins();
+      } else {
+        alert("You don't have enough coins for this food.");
+      }
     }
+  }
+
+  updateCoins() {
+    document.getElementById("coinAmount").textContent = this.coins;
   }
 
   play() {
@@ -135,19 +147,19 @@ document.getElementById("feed").addEventListener("click", () => {
 
 // Feed the pet when a food button is clicked
 document.getElementById("potato").addEventListener("click", () => {
-  pet.feed(3);
+  pet.feed(3, 0); // potatoes are free
   document.getElementById("foodModal").style.display = "none";
 });
 document.getElementById("bread").addEventListener("click", () => {
-  pet.feed(5);
+  pet.feed(5, 1); // bread costs 1 coin
   document.getElementById("foodModal").style.display = "none";
 });
 document.getElementById("lollypop").addEventListener("click", () => {
-  pet.feed(2);
+  pet.feed(2, 2); // lollypop costs 2 coins
   document.getElementById("foodModal").style.display = "none";
 });
 document.getElementById("sodaPop").addEventListener("click", () => {
-  pet.feed(1);
+  pet.feed(1, 3); // soda pop costs 3 coins
   document.getElementById("foodModal").style.display = "none";
 });
 

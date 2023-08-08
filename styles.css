@@ -190,3 +190,29 @@ progress {
   border: 1px solid #888;
   width: 80%;
 }
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+#coins {
+  display: flex;
+  align-items: center;
+}
+
+#coins img {
+  width: 20px;
+  margin-right: 5px;
+}
+
+button img {
+  height: 50px;
+  width: auto;
+}
+
+button img.coinImage {
+  height: 15px;
+}
