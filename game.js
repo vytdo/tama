@@ -11,6 +11,8 @@ class Pet {
     this.coins = 20;
     this.updateCoins();
     this.poops = 0;
+    this.level = 1;
+    this.exp = 0;
     this.paused = false;
   }
 
@@ -127,6 +129,11 @@ class Pet {
       document.getElementById("happiness").value = this.happiness;
       document.getElementById("cleanliness").value = this.cleanliness;
 
+      document.getElementById(
+        "levelDisplay"
+      ).textContent = `Level: ${this.level}`;
+      document.getElementById("experience").value = this.exp;
+      document.getElementById("experience").max = this.level * 10;
       document.documentElement.style.setProperty("--hunger", this.hunger);
       document.documentElement.style.setProperty("--happiness", this.happiness);
       document.documentElement.style.setProperty(
@@ -293,6 +300,17 @@ document.getElementById("coinSmash").addEventListener("click", () => {
 
     // Increase their happiness by 5
     pet.happiness = Math.min(pet.happiness + 5, 100);
+
+    // Increase pet's experience points
+    pet.exp += score; // You can modify this line as per your game design. For instance, you might want to multiply the score by a certain factor.
+
+    // Update pet's level if necessary
+    if (pet.exp >= pet.level * 10) {
+      // For example, to level up, the pet needs 10 * level experience points
+      pet.level++;
+      pet.exp = 0;
+    }
+
     pet.updateStats();
     pet.updateCoins();
     pet.paused = false;
@@ -388,6 +406,13 @@ class NumberRushGame {
     // Add 10 to the player's coins if they were successful
     if (success) {
       pet.coins += 10;
+    }
+
+    pet.exp += this.score;
+    if (pet.exp >= pet.level * 10) {
+      // For example, to level up, the pet needs 10 * level experience points
+      pet.level++;
+      pet.exp = 0;
     }
 
     pet.updateStats();
