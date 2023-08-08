@@ -190,7 +190,10 @@ document.getElementById("startGame").addEventListener("click", () => {
 
 // Connect buttons to pet actions
 
-document.getElementById("play").addEventListener("click", () => pet.play());
+document.getElementById("play").addEventListener("click", () => {
+  document.getElementById("playModal").style.display = "block";
+});
+
 document.getElementById("clean").addEventListener("click", () => pet.clean());
 
 // Connect the play again button
@@ -242,4 +245,39 @@ document.getElementById("exitFoodModal").addEventListener("click", () => {
 
 document.getElementById("closeNotEnoughCoins").addEventListener("click", () => {
   document.getElementById("notEnoughCoinsModal").style.display = "none";
+});
+
+document.getElementById("coinSmash").addEventListener("click", () => {
+  // Show the coin smash game
+  document.getElementById("playModal").style.display = "none";
+  document.getElementById("coinSmashGame").style.display = "block";
+
+  // Initialize the score
+  let score = 0;
+
+  // Increase the score when the coin is clicked
+  document.getElementById("coinSmashCoin").addEventListener("click", () => {
+    score++;
+  });
+
+  // End the game after 5 seconds
+  setTimeout(() => {
+    document.getElementById("coinSmashGame").style.display = "none";
+
+    // Add the score to the player's coins
+    pet.coins += score;
+
+    // Increase their happiness by 5
+    pet.happiness = Math.min(pet.happiness + 5, 100);
+    pet.updateStats();
+    pet.updateCoins();
+  }, 5000);
+});
+
+document.getElementById("numberRush").addEventListener("click", () => {
+  // Code to start the number rush game goes here
+});
+
+document.getElementById("exitPlayModal").addEventListener("click", () => {
+  document.getElementById("playModal").style.display = "none";
 });

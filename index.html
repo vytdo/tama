@@ -5,11 +5,24 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
+    <div id="coinSmashGame" class="game">
+      <img id="coinSmashCoin" src="coin.png" alt="Coin" />
+    </div>
+
     <div id="notEnoughCoinsModal" class="modal">
       <div class="modal-content">
         <h2>Not Enough Coins</h2>
         <p>You don't have enough coins for this food.</p>
         <button id="closeNotEnoughCoins">Close</button>
+      </div>
+    </div>
+
+    <div id="playModal" class="modal">
+      <div class="modal-content">
+        <h2>Choose game</h2>
+        <button id="coinSmash">Coin Smash</button>
+        <button id="numberRush">Number Rush</button>
+        <button id="exitPlayModal">Exit</button>
       </div>
     </div>
 
