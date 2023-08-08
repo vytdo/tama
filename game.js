@@ -70,7 +70,7 @@ class Pet {
         this.updateStats();
         this.updateCoins();
       } else {
-        alert("You don't have enough coins for this food.");
+        document.getElementById("notEnoughCoinsModal").style.display = "block";
       }
     }
   }
@@ -166,4 +166,8 @@ document.getElementById("sodaPop").addEventListener("click", () => {
 // Close the food modal when the exit button is clicked
 document.getElementById("exitFoodModal").addEventListener("click", () => {
   document.getElementById("foodModal").style.display = "none";
+});
+
+document.getElementById("closeNotEnoughCoins").addEventListener("click", () => {
+  document.getElementById("notEnoughCoinsModal").style.display = "none";
 });
