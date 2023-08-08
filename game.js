@@ -11,12 +11,14 @@ class Pet {
     this.coins = 20;
     this.updateCoins();
     this.poops = 0;
+    this.paused = false;
   }
 
   setPetImage() {
     let petImg = document.getElementById("petImg");
     petImg.src = this.gender === "male" ? "pet_male.png" : "pet_female.png";
   }
+
   start(name) {
     this.name = name;
     document.getElementById("petNameDisplay").textContent = this.name;
@@ -28,86 +30,95 @@ class Pet {
     petContainer.style.left = `${middle}px`;
 
     this.interval = setInterval(() => {
-      this.hunger--;
-      this.happiness--;
+      if (!this.paused) {
+        this.hunger--;
+        this.happiness--;
 
-      this.updateStats();
+        this.updateStats();
 
-      if (this.hunger <= 0 || this.happiness <= 0 || this.cleanliness <= 0) {
-        this.endGame();
+        if (this.hunger <= 0 || this.happiness <= 0 || this.cleanliness <= 0) {
+          this.endGame();
+        }
       }
     }, 1000);
 
     // Start the pet movement
     this.moveInterval = setInterval(() => {
-      this.move();
+      if (!this.paused) {
+        this.move();
+      }
     }, 1000);
 
     this.poopInterval = setInterval(() => {
-      if (Math.random() < 0.1) {
-        // 10% chance to poop every second
+      if (!this.paused && Math.random() < 0.1) {
         this.poop();
       }
     }, 1000);
   }
 
   move() {
-    // Get the pet container and pet area elements
-    const petContainer = document.getElementById("petContainer");
-    const petArea = document.getElementById("petArea");
+    if (!this.paused) {
+      // Get the pet container and pet area elements
+      const petContainer = document.getElementById("petContainer");
+      const petArea = document.getElementById("petArea");
 
-    // Calculate the maximum left position
-    const maxLeft = petArea.offsetWidth - petContainer.offsetWidth;
+      // Calculate the maximum left position
+      const maxLeft = petArea.offsetWidth - petContainer.offsetWidth;
 
-    // Get the pet's current position
-    const currentLeft = parseInt(petContainer.style.left) || 0;
+      // Get the pet's current position
+      const currentLeft = parseInt(petContainer.style.left) || 0;
 
-    // Calculate a new position a small, random distance to the left or right
-    const movementDistance = Math.floor(Math.random() * 40) - 20;
-    let newLeft = currentLeft + movementDistance;
+      // Calculate a new position a small, random distance to the left or right
+      const movementDistance = Math.floor(Math.random() * 40) - 20;
+      let newLeft = currentLeft + movementDistance;
 
-    // Make sure the new position is within the pet area
-    newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+      // Make sure the new position is within the pet area
+      newLeft = Math.max(0, Math.min(newLeft, maxLeft));
 
-    // Update the pet container's position
-    petContainer.style.left = `${newLeft}px`;
+      // Update the pet container's position
+      petContainer.style.left = `${newLeft}px`;
+    }
   }
 
   poop() {
-    // Increase the number of poops
-    this.poops++;
+    if (!this.paused) {
+      // Increase the number of poops
+      this.poops++;
 
-    // Create a new poop element
-    const poop = document.createElement("img");
-    poop.src = "poop.png";
-    poop.classList.add("poop");
+      // Create a new poop element
+      const poop = document.createElement("img");
+      poop.src = "poop.png";
+      poop.classList.add("poop");
 
-    // Add the poop element to the pet area
-    const petArea = document.getElementById("petArea");
-    petArea.appendChild(poop);
+      // Add the poop element to the pet area
+      const petArea = document.getElementById("petArea");
+      petArea.appendChild(poop);
 
-    // Decrease the cleanliness stat based on the number of poops on the screen
-    this.cleanliness = Math.max(0, 100 - this.poops * 10);
-    this.updateStats();
+      // Decrease the cleanliness stat based on the number of poops on the screen
+      this.cleanliness = Math.max(0, 100 - this.poops * 10);
+      this.updateStats();
 
-    poop.style.setProperty("--random-x", Math.random());
+      poop.style.setProperty("--random-x", Math.random());
+    }
   }
 
   endGame() {
-    clearInterval(this.interval);
-    this.gameOver = true;
+    if (!this.paused) {
+      clearInterval(this.interval);
+      this.gameOver = true;
 
-    // Calculate how long the pet was kept alive
-    const timeAlive = Math.floor((Date.now() - this.startTime) / 1000);
-    document.getElementById(
-      "timeAlive"
-    ).textContent = `You kept your pet alive for ${timeAlive} seconds.`;
+      // Calculate how long the pet was kept alive
+      const timeAlive = Math.floor((Date.now() - this.startTime) / 1000);
+      document.getElementById(
+        "timeAlive"
+      ).textContent = `You kept your pet alive for ${timeAlive} seconds.`;
 
-    // Show the game over modal
-    document.getElementById("gameOverModal").style.display = "block";
+      // Show the game over modal
+      document.getElementById("gameOverModal").style.display = "block";
 
-    clearInterval(this.moveInterval);
-    clearInterval(this.poopInterval);
+      clearInterval(this.moveInterval);
+      clearInterval(this.poopInterval);
+    }
   }
 
   updateStats() {
@@ -247,7 +258,11 @@ document.getElementById("closeNotEnoughCoins").addEventListener("click", () => {
   document.getElementById("notEnoughCoinsModal").style.display = "none";
 });
 
+// COIN SMASH
 document.getElementById("coinSmash").addEventListener("click", () => {
+  // Pause the game
+  pet.paused = true;
+
   // Show the coin smash game
   document.getElementById("playModal").style.display = "none";
   document.getElementById("coinSmashGame").style.display = "block";
@@ -271,6 +286,7 @@ document.getElementById("coinSmash").addEventListener("click", () => {
     pet.happiness = Math.min(pet.happiness + 5, 100);
     pet.updateStats();
     pet.updateCoins();
+    pet.paused = false;
   }, 5000);
 });
 
