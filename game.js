@@ -10,6 +10,7 @@ class Pet {
     this.setPetImage();
     this.coins = 20;
     this.updateCoins();
+    this.poops = 0;
   }
 
   setPetImage() {
@@ -29,7 +30,6 @@ class Pet {
     this.interval = setInterval(() => {
       this.hunger--;
       this.happiness--;
-      this.cleanliness--;
 
       this.updateStats();
 
@@ -41,6 +41,13 @@ class Pet {
     // Start the pet movement
     this.moveInterval = setInterval(() => {
       this.move();
+    }, 1000);
+
+    this.poopInterval = setInterval(() => {
+      if (Math.random() < 0.1) {
+        // 10% chance to poop every second
+        this.poop();
+      }
     }, 1000);
   }
 
@@ -66,6 +73,26 @@ class Pet {
     petContainer.style.left = `${newLeft}px`;
   }
 
+  poop() {
+    // Increase the number of poops
+    this.poops++;
+
+    // Create a new poop element
+    const poop = document.createElement("img");
+    poop.src = "poop.png";
+    poop.classList.add("poop");
+
+    // Add the poop element to the pet area
+    const petArea = document.getElementById("petArea");
+    petArea.appendChild(poop);
+
+    // Decrease the cleanliness stat based on the number of poops on the screen
+    this.cleanliness = Math.max(0, 100 - this.poops * 10);
+    this.updateStats();
+
+    poop.style.setProperty("--random-x", Math.random());
+  }
+
   endGame() {
     clearInterval(this.interval);
     this.gameOver = true;
@@ -80,6 +107,7 @@ class Pet {
     document.getElementById("gameOverModal").style.display = "block";
 
     clearInterval(this.moveInterval);
+    clearInterval(this.poopInterval);
   }
 
   updateStats() {
@@ -123,7 +151,16 @@ class Pet {
 
   clean() {
     if (!this.gameOver) {
-      this.cleanliness = Math.min(this.cleanliness + 20, 100);
+      // Remove all the poops
+      const petArea = document.getElementById("petArea");
+      const poops = petArea.getElementsByClassName("poop");
+      while (poops.length > 0) {
+        poops[0].parentNode.removeChild(poops[0]);
+      }
+
+      // Reset the cleanliness stat and poops counter
+      this.cleanliness = 100;
+      this.poops = 0;
       this.updateStats();
     }
   }
