@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Pet</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <!-- Add this inside the body tag -->
+    <div id="startModal" class="modal">
+      <div class="modal-content">
+        <h2>Start Game</h2>
+        <p>Your pet is a <span id="petGender"></span>.</p>
+        <label for="petName">Name your pet:</label>
+        <input type="text" id="petName" name="petName" />
+        <button id="startGame">Start Game</button>
+      </div>
+    </div>
+
+    <div id="menu">
+      <button id="start">Start</button>
+      <button id="instructionsButton">Instructions</button>
+    </div>
+
+    <div id="instructionsModal" class="modal">
+      <div class="modal-content">
+        <h2>Instructions</h2>
+        <p>
+          Feed, play with, and clean your pet to keep it alive as long as
+          possible. Each action increases the corresponding stat by 20 points.
+          The game ends when any stat reaches 0.
+        </p>
+        <button id="closeInstructions">Close</button>
+      </div>
+    </div>
+
+    <div id="game">
+      <h1><span id="petNameDisplay"></span> <img id="genderIcon" /></h1>
+
+      <div id="petArea">
+        <img id="petImg" alt="Your pet" />
+      </div>
+
+      <div id="stats">
+        <div class="stat">
+          <label>Hunger:</label>
+          <progress id="hunger" value="100" max="100"></progress>
+        </div>
+
+        <div class="stat">
+          <label>Happiness:</label>
+          <progress id="happiness" value="100" max="100"></progress>
+        </div>
+
+        <div class="stat">
+          <label>Cleanliness:</label>
+          <progress id="cleanliness" value="100" max="100"></progress>
+        </div>
+      </div>
+
+      <div id="actions">
+        <button id="feed">Feed</button>
+        <button id="play">Play</button>
+        <button id="clean">Clean</button>
+      </div>
+
+      <div id="gameOverModal" class="modal">
+        <div class="modal-content">
+          <h2>Game Over!</h2>
+          <p id="timeAlive"></p>
+          <button id="playAgain">Play Again</button>
+        </div>
+      </div>
+    </div>
+    <script src="game.js"></script>
+  </body>
+</html>
