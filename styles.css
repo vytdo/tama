@@ -104,10 +104,45 @@ progress {
 }
 
 #menu {
+  border: 3px solid #eee;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  text-align: center;
+  width: 300px; /* Adjust to your preference */
+  margin: 5% auto; /* Center the menu */
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+#menu h1 {
+  font-size: 2.5em;
   margin-bottom: 20px;
-  width: 500px;
+  color: #4a4a4a;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 1px;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+#menu button {
+  margin: 10px 0;
+  width: 100%; /* This will make the buttons take the full width of the menu-buttons container */
+  font-weight: bold;
+  background-color: #7fbfff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#menu button:hover {
+  background-color: #6aaedc;
 }
 
 #start {
