@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>My Pet</title>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
   </head>
   <body>
     <!-- Level Up Modal -->
@@ -24,7 +24,11 @@
     <div id="coinSmashGame" class="game">
       <h2 id="gamePrompt">SMASH THE COIN!</h2>
       <div id="coinContainer">
-        <img id="coinSmashCoin" src="coin.png" alt="Coin" />
+        <img
+          id="coinSmashCoin"
+          src="./assets/images/misc/coin.png"
+          alt="Coin"
+        />
       </div>
     </div>
 
@@ -50,30 +54,66 @@
       <div class="modal-content">
         <h2>Choose food</h2>
         <button id="potato">
-          <img src="potato.png" alt="Potato" />
-          Potato <img class="coinImage" src="coin.png" alt="Coins" /> 0
+          <img src="./assets/images/food/potato.png" alt="Potato" />
+          Potato
+          <img
+            class="coinImage"
+            src="./assets/images/misc/coin.png"
+            alt="Coins"
+          />
+          0
         </button>
         <button id="bread">
-          <img src="bread.png" alt="Bread" />
-          Bread <img class="coinImage" src="coin.png" alt="Coins" /> 1
+          <img src="./assets/images/food/bread.png" alt="Bread" />
+          Bread
+          <img
+            class="coinImage"
+            src="./assets/images/misc/coin.png"
+            alt="Coins"
+          />
+          1
         </button>
         <button id="lollypop">
-          <img src="lollypop.png" alt="Lollypop" />
-          Lollypop <img class="coinImage" src="coin.png" alt="Coins" /> 2
+          <img src="./assets/images/food/lollypop.png" alt="Lollypop" />
+          Lollypop
+          <img
+            class="coinImage"
+            src="./assets/images/misc/coin.png"
+            alt="Coins"
+          />
+          2
         </button>
         <button id="sodaPop">
-          <img src="soda_pop.png" alt="Soda Pop" />
-          Soda Pop <img class="coinImage" src="coin.png" alt="Coins" /> 3
+          <img src="./assets/images/food/soda_pop.png" alt="Soda Pop" />
+          Soda Pop
+          <img
+            class="coinImage"
+            src="./assets/images/misc/coin.png"
+            alt="Coins"
+          />
+          3
         </button>
 
         <button id="burger" class="locked-food">
-          <img src="burger.png" alt="Burger" />
-          Burger <img class="coinImage" src="coin.png" alt="Coins" /> 4
+          <img src="./assets/images/food/burger.png" alt="Burger" />
+          Burger
+          <img
+            class="coinImage"
+            src="./assets/images/misc/coin.png"
+            alt="Coins"
+          />
+          4
           <span class="unlock-level">Unlocked at Level 5</span>
         </button>
         <button id="sushi" class="locked-food">
-          <img src="sushi.png" alt="Sushi" />
-          Sushi <img class="coinImage" src="coin.png" alt="Coins" /> 5
+          <img src="./assets/images/food/sushi.png" alt="Sushi" />
+          Sushi
+          <img
+            class="coinImage"
+            src="./assets/images/misc/coin.png"
+            alt="Coins"
+          />
+          5
           <span class="unlock-level">Unlocked at Level 7</span>
         </button>
 
@@ -117,7 +157,7 @@
         <span id="levelDisplay">Level: 1</span>
 
         <div id="coins">
-          <img src="coin.png" alt="Coins" />
+          <img src="./assets/images/misc/coin.png" alt="Coins" />
           <span id="coinAmount"></span>
         </div>
       </div>
@@ -162,6 +202,6 @@
         </div>
       </div>
     </div>
-    <script src="game.js"></script>
+    <script src="./js/game.js"></script>
   </body>
 </html>

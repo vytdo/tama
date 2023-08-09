@@ -35,7 +35,10 @@ class Pet {
 
   setPetImage() {
     let petImg = document.getElementById("petImg");
-    petImg.src = this.gender === "male" ? "pet_male.png" : "pet_female.png";
+    petImg.src =
+      this.gender === "male"
+        ? "assets/images/pets/pet_male.png"
+        : "assets/images/pets/pet_female.png";
   }
 
   start(name) {
@@ -106,7 +109,7 @@ class Pet {
 
       // Create a new poop element
       const poop = document.createElement("img");
-      poop.src = "poop.png";
+      poop.src = "assets/images/misc/poop.png";
       poop.classList.add("poop");
 
       // Add the poop element to the pet area
