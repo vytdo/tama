@@ -336,3 +336,19 @@ button img.coinImage {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+.locked-food {
+  opacity: 0.5;
+  pointer-events: none; /* Makes the button non-clickable */
+}
+
+.unlock-level {
+  display: none;
+  font-size: 0.8em;
+  color: red;
+  margin-left: 5px;
+}
+
+.locked-food .unlock-level {
+  display: inline; /* Show the message when the food is locked */
+}

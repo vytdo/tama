@@ -16,6 +16,23 @@ class Pet {
     this.paused = false;
   }
 
+  updateFoodAvailability() {
+    const burger = document.getElementById("burger");
+    const sushi = document.getElementById("sushi");
+
+    if (this.level >= 5) {
+      burger.classList.remove("locked-food");
+    } else {
+      burger.classList.add("locked-food");
+    }
+
+    if (this.level >= 7) {
+      sushi.classList.remove("locked-food");
+    } else {
+      sushi.classList.add("locked-food");
+    }
+  }
+
   setPetImage() {
     let petImg = document.getElementById("petImg");
     petImg.src = this.gender === "male" ? "pet_male.png" : "pet_female.png";
@@ -125,6 +142,7 @@ class Pet {
 
   updateStats() {
     if (!this.gameOver) {
+      this.updateFoodAvailability();
       document.getElementById("hunger").value = this.hunger;
       document.getElementById("happiness").value = this.happiness;
       document.getElementById("cleanliness").value = this.cleanliness;
@@ -224,6 +242,16 @@ class Pet {
 
 // Create a new pet
 const pet = new Pet();
+
+// Connect the burger and sushi buttons to the feed action:
+document.getElementById("burger").addEventListener("click", () => {
+  pet.feed(7, 4, 5); // Assuming burger gives 5 experience points
+  document.getElementById("foodModal").style.display = "none";
+});
+document.getElementById("sushi").addEventListener("click", () => {
+  pet.feed(10, 5, 7); // Assuming sushi gives 7 experience points
+  document.getElementById("foodModal").style.display = "none";
+});
 
 // Start the game when the start button is clicked
 document.getElementById("start").addEventListener("click", () => {
