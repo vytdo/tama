@@ -144,6 +144,26 @@ class Pet {
     }
   }
 
+  checkLevelUp() {
+    if (this.exp >= this.getExperienceForNextLevel()) {
+      this.level++;
+      console.log("Leveled up! Current level:", this.level);
+
+      // Display the level up modal
+      let levelUpModal = document.getElementById("levelUpModal");
+      let levelUpMessage = document.getElementById("levelUpMessage");
+      let levelUpReward = document.getElementById("levelUpReward");
+
+      levelUpMessage.textContent = `Your pet has leveled up to Level ${this.level}!`;
+      levelUpReward.textContent = `You've been awarded ${
+        this.level * 5
+      } coins!`; // Assuming 5 coins per level as a reward
+      levelUpModal.style.display = "block";
+
+      this.exp = 0;
+    }
+  }
+
   // New method to get the required experience for the next level
   getExperienceForNextLevel() {
     return Math.pow(this.level, 2) * 10; // Example progressive formula
@@ -151,14 +171,21 @@ class Pet {
 
   feed(amount, cost = 0, exp = 0) {
     if (!this.gameOver) {
+      console.log("Feeding pet. Current experience:", this.exp);
+
       if (this.coins >= cost) {
         this.hunger = Math.min(this.hunger + amount, 100);
         this.coins -= cost;
         this.exp += exp; // increase experience
-        if (this.exp >= this.level * 10) {
-          this.level++;
-          this.exp = 0;
-        }
+
+        console.log(
+          "Checking level-up. Current experience:",
+          this.exp,
+          "Required experience for next level:",
+          this.getExperienceForNextLevel()
+        );
+
+        this.checkLevelUp();
         this.updateStats();
         this.updateCoins();
       } else {
@@ -216,6 +243,12 @@ document.getElementById("startGame").addEventListener("click", () => {
     alert("Please enter a name for your pet.");
   }
 });
+
+document
+  .getElementById("closeLevelUpModal")
+  .addEventListener("click", function () {
+    document.getElementById("levelUpModal").style.display = "none";
+  });
 
 // Connect buttons to pet actions
 
@@ -314,10 +347,13 @@ document.getElementById("coinSmash").addEventListener("click", () => {
 
     // Increase pet's experience points
     pet.exp += score; // You can modify this line as per your game design. For instance, you might want to multiply the score by a certain factor.
+    pet.checkLevelUp();
 
     // Update pet's level if necessary
     if (pet.exp >= pet.getExperienceForNextLevel()) {
       pet.level++;
+      alert(`Congratulations! Your pet has leveled up to Level ${this.level}!`);
+
       pet.exp = 0;
 
       // Reward the player with coins for leveling up
@@ -422,11 +458,7 @@ class NumberRushGame {
     }
 
     pet.exp += this.score;
-    if (pet.exp >= pet.level * 10) {
-      // For example, to level up, the pet needs 10 * level experience points
-      pet.level++;
-      pet.exp = 0;
-    }
+    pet.checkLevelUp();
 
     pet.updateStats();
     pet.updateCoins();
