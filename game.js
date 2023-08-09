@@ -133,7 +133,8 @@ class Pet {
         "levelDisplay"
       ).textContent = `Level: ${this.level}`;
       document.getElementById("experience").value = this.exp;
-      document.getElementById("experience").max = this.level * 10;
+      document.getElementById("experience").max =
+        this.getExperienceForNextLevel();
       document.documentElement.style.setProperty("--hunger", this.hunger);
       document.documentElement.style.setProperty("--happiness", this.happiness);
       document.documentElement.style.setProperty(
@@ -141,6 +142,11 @@ class Pet {
         this.cleanliness
       );
     }
+  }
+
+  // New method to get the required experience for the next level
+  getExperienceForNextLevel() {
+    return Math.pow(this.level, 2) * 10; // Example progressive formula
   }
 
   feed(amount, cost = 0, exp = 0) {
@@ -310,10 +316,12 @@ document.getElementById("coinSmash").addEventListener("click", () => {
     pet.exp += score; // You can modify this line as per your game design. For instance, you might want to multiply the score by a certain factor.
 
     // Update pet's level if necessary
-    if (pet.exp >= pet.level * 10) {
-      // For example, to level up, the pet needs 10 * level experience points
+    if (pet.exp >= pet.getExperienceForNextLevel()) {
       pet.level++;
       pet.exp = 0;
+
+      // Reward the player with coins for leveling up
+      pet.coins += pet.level * 5; // Example: 5 coins per level
     }
 
     pet.updateStats();
