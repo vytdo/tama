@@ -102,70 +102,145 @@
     <div id="foodModal" class="modal">
       <div class="modal-content">
         <h2>Choose food</h2>
-        <button id="potato">
-          <img src="./assets/images/food/potato.png" alt="Potato" />
-          Potato
-          <img
-            class="coinImage"
-            src="./assets/images/misc/coin.png"
-            alt="Coins"
-          />
-          0
-        </button>
-        <button id="bread">
-          <img src="./assets/images/food/bread.png" alt="Bread" />
-          Bread
-          <img
-            class="coinImage"
-            src="./assets/images/misc/coin.png"
-            alt="Coins"
-          />
-          1
-        </button>
-        <button id="lollypop">
-          <img src="./assets/images/food/lollypop.png" alt="Lollypop" />
-          Lollypop
-          <img
-            class="coinImage"
-            src="./assets/images/misc/coin.png"
-            alt="Coins"
-          />
-          2
-        </button>
-        <button id="sodaPop">
-          <img src="./assets/images/food/soda_pop.png" alt="Soda Pop" />
-          Soda Pop
-          <img
-            class="coinImage"
-            src="./assets/images/misc/coin.png"
-            alt="Coins"
-          />
-          3
-        </button>
 
-        <button id="burger" class="locked-food">
-          <img src="./assets/images/food/burger.png" alt="Burger" />
-          Burger
-          <img
-            class="coinImage"
-            src="./assets/images/misc/coin.png"
-            alt="Coins"
-          />
-          4
-          <span class="unlock-level">Unlocked at Level 5</span>
-        </button>
-        <button id="sushi" class="locked-food">
-          <img src="./assets/images/food/sushi.png" alt="Sushi" />
-          Sushi
-          <img
-            class="coinImage"
-            src="./assets/images/misc/coin.png"
-            alt="Coins"
-          />
-          5
-          <span class="unlock-level">Unlocked at Level 7</span>
-        </button>
+        <div class="food-page" id="foodPage1">
+          <button id="potato">
+            <img src="./assets/images/food/potato.png" alt="Potato" />
+            Potato
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            0
+          </button>
+          <button id="bread">
+            <img src="./assets/images/food/bread.png" alt="Bread" />
+            Bread
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            1
+          </button>
+          <button id="lollypop">
+            <img src="./assets/images/food/lollypop.png" alt="Lollypop" />
+            Lollypop
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            2
+          </button>
+          <button id="sodaPop">
+            <img src="./assets/images/food/soda_pop.png" alt="Soda Pop" />
+            Soda Pop
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            3
+          </button>
+        </div>
 
+        <div class="food-page" id="foodPage2" style="display: none">
+          <button id="burger" class="locked-food">
+            <img src="./assets/images/food/burger.png" alt="Burger" />
+            Burger
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            4
+            <span class="unlock-level">Unlocked at Level 5</span>
+          </button>
+          <button id="sushi" class="locked-food">
+            <img src="./assets/images/food/sushi.png" alt="Sushi" />
+            Sushi
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            5
+            <span class="unlock-level">Unlocked at Level 7</span>
+          </button>
+
+          <button id="blueJellySandwich" class="locked-food">
+            <img
+              src="./assets/images/food/bluejelly_sandwhich_.png"
+              alt="Blue Jelly Sandwich"
+            />
+            Blue Jelly Sandwich
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            6
+            <span class="unlock-level">Unlocked at Level 3</span>
+          </button>
+          <button id="frenchToast" class="locked-food">
+            <img
+              src="./assets/images/food/french_toast.png"
+              alt="French Toast"
+            />
+            French Toast
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            5
+            <span class="unlock-level">Unlocked at Level 4</span>
+          </button>
+          <button id="pho" class="locked-food">
+            <img src="./assets/images/food/pho.png" alt="Pho" />
+            Pho
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            4
+            <span class="unlock-level">Unlocked at Level 2</span>
+          </button>
+          <button id="pinkEnergyDrink" class="locked-food">
+            <img
+              src="./assets/images/food/pink_energy.png"
+              alt="Pink Energy Drink"
+            />
+            Pink Energy Drink
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            7
+            <span class="unlock-level">Unlocked at Level 5</span>
+          </button>
+          <button id="strawberryCake" class="locked-food">
+            <img
+              src="./assets/images/food/strawberry_cake.png"
+              alt="Strawberry Cake"
+            />
+            Strawberry Cake
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            8
+            <span class="unlock-level">Unlocked at Level 6</span>
+          </button>
+        </div>
+
+        <button id="prevFoodPage">Previous</button>
+        <button id="nextFoodPage">Next</button>
         <button id="exitFoodModal">Exit</button>
       </div>
     </div>

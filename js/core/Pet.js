@@ -30,11 +30,28 @@ class Pet {
   updateFoodAvailability() {
     const burger = document.getElementById("burger");
     const sushi = document.getElementById("sushi");
+    const blueJellySandwich = document.getElementById("blueJellySandwich");
+    const frenchToast = document.getElementById("frenchToast");
+    const strawberryCake = document.getElementById("strawberryCake");
+
+    if (this.level >= 3) {
+      blueJellySandwich.classList.remove("locked-food");
+    } else {
+      blueJellySandwich.classList.add("locked-food");
+    }
+
+    if (this.level >= 4) {
+      frenchToast.classList.remove("locked-food");
+    } else {
+      frenchToast.classList.add("locked-food");
+    }
 
     if (this.level >= 5) {
       burger.classList.remove("locked-food");
+      strawberryCake.classList.remove("locked-food");
     } else {
       burger.classList.add("locked-food");
+      strawberryCake.classList.add("locked-food");
     }
 
     if (this.level >= 7) {

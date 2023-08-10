@@ -1,6 +1,29 @@
 // Create a new pet
 const pet = new Pet();
 
+let currentFoodPage = 1;
+const totalFoodPages = 2; // Total number of food pages
+
+document.getElementById("nextFoodPage").addEventListener("click", () => {
+  if (currentFoodPage < totalFoodPages) {
+    document.getElementById(`foodPage${currentFoodPage}`).style.display =
+      "none";
+    currentFoodPage++;
+    document.getElementById(`foodPage${currentFoodPage}`).style.display =
+      "block";
+  }
+});
+
+document.getElementById("prevFoodPage").addEventListener("click", () => {
+  if (currentFoodPage > 1) {
+    document.getElementById(`foodPage${currentFoodPage}`).style.display =
+      "none";
+    currentFoodPage--;
+    document.getElementById(`foodPage${currentFoodPage}`).style.display =
+      "block";
+  }
+});
+
 // Connect the burger and sushi buttons to the feed action:
 document.getElementById("burger").addEventListener("click", () => {
   pet.feed(7, 4, 5); // Assuming burger gives 5 experience points
@@ -62,8 +85,13 @@ document.getElementById("closeInstructions").addEventListener("click", () => {
   document.getElementById("instructionsModal").style.display = "none";
 });
 
-// Open the food modal when the feed button is clicked
+// When opening the food modal, always show the first page
 document.getElementById("feed").addEventListener("click", () => {
+  currentFoodPage = 1;
+  for (let i = 1; i <= totalFoodPages; i++) {
+    document.getElementById(`foodPage${i}`).style.display =
+      i === 1 ? "block" : "none";
+  }
   document.getElementById("foodModal").style.display = "block";
 });
 
@@ -82,6 +110,27 @@ document.getElementById("lollypop").addEventListener("click", () => {
 });
 document.getElementById("sodaPop").addEventListener("click", () => {
   pet.feed(1, 3, 4); // soda pop gives 4 experience points
+  document.getElementById("foodModal").style.display = "none";
+});
+
+document.getElementById("blueJellySandwich").addEventListener("click", () => {
+  pet.feed(6, 6, 5); // Adjust the experience points
+  document.getElementById("foodModal").style.display = "none";
+});
+document.getElementById("frenchToast").addEventListener("click", () => {
+  pet.feed(5, 5, 4); // Adjust the experience points
+  document.getElementById("foodModal").style.display = "none";
+});
+document.getElementById("pho").addEventListener("click", () => {
+  pet.feed(8, 4, 3); // Adjust the experience points
+  document.getElementById("foodModal").style.display = "none";
+});
+document.getElementById("pinkEnergyDrink").addEventListener("click", () => {
+  pet.feed(4, 7, 6); // Adjust the experience points
+  document.getElementById("foodModal").style.display = "none";
+});
+document.getElementById("strawberryCake").addEventListener("click", () => {
+  pet.feed(10, 8, 7); // Adjust the experience points
   document.getElementById("foodModal").style.display = "none";
 });
 
