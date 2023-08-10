@@ -143,3 +143,40 @@ document.getElementById("coinSmash").addEventListener("click", () => {
 document.getElementById("exitPlayModal").addEventListener("click", () => {
   document.getElementById("playModal").style.display = "none";
 });
+
+// File: game.js
+
+// Open the shop modal when the shop button is clicked
+document.getElementById("shop").addEventListener("click", () => {
+  document.getElementById("shopModal").style.display = "block";
+});
+
+// Close the shop modal when the exit button is clicked
+document.getElementById("exitShopModal").addEventListener("click", () => {
+  document.getElementById("shopModal").style.display = "none";
+});
+
+// Purchase and apply a background
+function purchaseBackground(backgroundID, cost, levelRequired) {
+  if (pet.level >= levelRequired && pet.coins >= cost) {
+    pet.coins -= cost;
+    pet.updateCoins();
+    const petArea = document.getElementById("petArea");
+    petArea.style.backgroundImage = `url('./assets/images/backgrounds/${backgroundID}.png')`;
+    document.getElementById("shopModal").style.display = "none";
+  } else {
+    alert("You don't have enough coins or level for this background.");
+  }
+}
+
+// Connect the background buttons
+document
+  .getElementById("background1")
+  .addEventListener("click", () => purchaseBackground("bubblegum_bg", 0, 1));
+document
+  .getElementById("background2")
+  .addEventListener("click", () => purchaseBackground("greenyfields_bg", 1, 1));
+document
+  .getElementById("background3")
+  .addEventListener("click", () => purchaseBackground("frenchfries_bg", 2, 3));
+// Add more backgrounds as needed

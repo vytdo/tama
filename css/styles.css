@@ -352,3 +352,20 @@ button img.coinImage {
 .locked-food .unlock-level {
   display: inline; /* Show the message when the food is locked */
 }
+
+/* File: styles.css */
+
+.locked-background .background-locker {
+  position: relative;
+  filter: brightness(50%); /* Darken the image */
+}
+
+.locked-background .background-locker .unlock-level {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: #fff; /* White text */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  padding: 5px;
+  border-radius: 3px;
+}

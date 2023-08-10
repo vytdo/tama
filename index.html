@@ -5,6 +5,56 @@
     <link rel="stylesheet" type="text/css" href="./css/styles.css" />
   </head>
   <body>
+    <div id="shopModal" class="modal">
+      <div class="modal-content">
+        <h2>Choose Background</h2>
+        <button id="background1">
+          <img
+            src="./assets/images/backgrounds/bubblegum_bg.png"
+            alt="Background 1"
+          />
+          Background 1
+          <img
+            class="coinImage"
+            src="./assets/images/misc/coin.png"
+            alt="Coins"
+          />
+          0
+        </button>
+        <button id="background2">
+          <img
+            src="./assets/images/backgrounds/greenyfields_bg.png"
+            alt="Background 2"
+          />
+          Background 2
+          <img
+            class="coinImage"
+            src="./assets/images/misc/coin.png"
+            alt="Coins"
+          />
+          1
+        </button>
+        <button id="background3" class="locked-background">
+          <div class="background-locker">
+            <img
+              src="./assets/images/backgrounds/frenchfries_bg.png"
+              alt="Background 3"
+            />
+            Background 3
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            2
+            <span class="unlock-level">Unlocked at Level 3</span>
+          </div>
+        </button>
+        <!-- Add more backgrounds as needed -->
+        <button id="exitShopModal">Exit</button>
+      </div>
+    </div>
+
     <!-- Level Up Modal -->
     <div id="levelUpModal" class="modal">
       <div class="modal-content">
@@ -18,7 +68,6 @@
     <div id="numberRushGame" class="game">
       <h2 id="numberRushPrompt">CLICK ON THE NUMBERS IN ASCENDING ORDER!</h2>
       <h3 id="numberRushTimer"></h3>
-      <!-- Number buttons will be added here -->
     </div>
 
     <div id="coinSmashGame" class="game">
@@ -192,6 +241,7 @@
         <button id="feed">Feed</button>
         <button id="play">Play</button>
         <button id="clean">Clean</button>
+        <button id="shop">Shop</button>
       </div>
 
       <div id="gameOverModal" class="modal">

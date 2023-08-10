@@ -16,6 +16,17 @@ class Pet {
     this.paused = false;
   }
 
+  updateBackgroundAvailability() {
+    const bg3 = document.getElementById("background3");
+    // Add more backgrounds as needed
+
+    if (this.level >= 3) {
+      bg3.classList.remove("locked-background");
+    } else {
+      bg3.classList.add("locked-background");
+    }
+  }
+
   updateFoodAvailability() {
     const burger = document.getElementById("burger");
     const sushi = document.getElementById("sushi");
@@ -119,6 +130,7 @@ class Pet {
 
   updateStats() {
     if (!this.gameOver) {
+      this.updateBackgroundAvailability();
       this.updateFoodAvailability();
       document.getElementById("hunger").value = this.hunger;
       document.getElementById("happiness").value = this.happiness;
