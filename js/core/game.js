@@ -288,9 +288,32 @@ document.getElementById("propellerHat").addEventListener("click", () =>
   )
 );
 
-document
-  .getElementById("whiteSneakers")
-  .addEventListener("click", () => purchaseClothing("whiteSneakers", 15));
+document.getElementById("bucketPropellerHat").addEventListener("click", () =>
+  purchaseClothing(
+    "bucketPropellerHat",
+    10,
+    "./assets/images/clothing/bucketpropeller_hat.png",
+    { top: "px", left: "39px", width: "55px", height: "55px" } // Adjust the width and height as needed
+  )
+);
+
+document.getElementById("baseballHat").addEventListener("click", () =>
+  purchaseClothing(
+    "baseballHat",
+    12,
+    "./assets/images/clothing/baseball_hat.png",
+    { top: "2px", left: "33px", width: "50px", height: "50px" } // Adjust the width and height as needed
+  )
+);
+
+document.getElementById("witchHat").addEventListener("click", () =>
+  purchaseClothing(
+    "witchHat",
+    12,
+    "./assets/images/clothing/witch_hat.png",
+    { top: "0.1px", left: "38px", width: "55px", height: "55px" } // Adjust the width and height as needed
+  )
+);
 
 // File: game.js
 document.getElementById("exitClothingShop").addEventListener("click", () => {
