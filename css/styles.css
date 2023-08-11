@@ -392,3 +392,46 @@ button img.coinImage {
   cursor: not-allowed;
   opacity: 0.5;
 }
+
+.clothing-item {
+  position: absolute;
+  width: auto;
+  height: auto;
+}
+
+#propellerHatImage {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  /* You can adjust the size and position of the hat according to your preference */
+  width: 68px; /* Example */
+  height: 68px; /* Example */
+}
+
+#whiteSneakersImage {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.shop-section {
+  display: none;
+}
+
+.shop-section.active {
+  display: block;
+}
+
+/* File: styles.css */
+#clothingContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.clothing-item-image {
+  position: absolute;
+  /* Adjust the width, height, top, and left properties as needed */
+}

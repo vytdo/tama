@@ -5,53 +5,92 @@
     <link rel="stylesheet" type="text/css" href="./css/styles.css" />
   </head>
   <body>
+    <!-- Shop Modal -->
     <div id="shopModal" class="modal">
       <div class="modal-content">
-        <h2>Choose Background</h2>
-        <button id="background1">
-          <img
-            src="./assets/images/backgrounds/bubblegum_bg.png"
-            alt="Background 1"
-          />
-          Background 1
-          <img
-            class="coinImage"
-            src="./assets/images/misc/coin.png"
-            alt="Coins"
-          />
-          0
-        </button>
-        <button id="background2">
-          <img
-            src="./assets/images/backgrounds/greenyfields_bg.png"
-            alt="Background 2"
-          />
-          Background 2
-          <img
-            class="coinImage"
-            src="./assets/images/misc/coin.png"
-            alt="Coins"
-          />
-          1
-        </button>
-        <button id="background3" class="locked-background">
-          <div class="background-locker">
+        <h2>Shop</h2>
+        <button id="shopBackgrounds">Backgrounds</button>
+        <button id="shopClothing">Clothing</button>
+        <div id="backgroundShop" class="shop-section">
+          <h3>Choose Background</h3>
+          <!-- Background buttons as before -->
+          <button id="background1">
             <img
-              src="./assets/images/backgrounds/frenchfries_bg.png"
-              alt="Background 3"
+              src="./assets/images/backgrounds/bubblegum_bg.png"
+              alt="Background 1"
             />
-            Background 3
+            Background 1
             <img
               class="coinImage"
               src="./assets/images/misc/coin.png"
               alt="Coins"
             />
-            2
-            <span class="unlock-level">Unlocked at Level 3</span>
-          </div>
-        </button>
-        <!-- Add more backgrounds as needed -->
-        <button id="exitShopModal">Exit</button>
+            0
+          </button>
+          <button id="background2">
+            <img
+              src="./assets/images/backgrounds/greenyfields_bg.png"
+              alt="Background 2"
+            />
+            Background 2
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            1
+          </button>
+          <button id="background3" class="locked-background">
+            <div class="background-locker">
+              <img
+                src="./assets/images/backgrounds/frenchfries_bg.png"
+                alt="Background 3"
+              />
+              Background 3
+              <img
+                class="coinImage"
+                src="./assets/images/misc/coin.png"
+                alt="Coins"
+              />
+              2
+              <span class="unlock-level">Unlocked at Level 3</span>
+            </div>
+          </button>
+
+          <button id="exitShopModal">Exit</button>
+        </div>
+        <div id="clothingShop" class="shop-section" style="display: none">
+          <h3>Choose Clothing</h3>
+
+          <button id="propellerHat">
+            <img
+              src="./assets/images/clothing/propeller_hat.png"
+              alt="Propeller Hat"
+            />
+            Propeller Hat
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            5
+          </button>
+          <button id="whiteSneakers">
+            <img
+              src="./assets/images/clothing/white_sneakers.png"
+              alt="White Sneakers"
+            />
+            White Sneakers
+            <img
+              class="coinImage"
+              src="./assets/images/misc/coin.png"
+              alt="Coins"
+            />
+            10
+          </button>
+
+          <button id="exitClothingShop">Exit</button>
+        </div>
       </div>
     </div>
 
@@ -288,7 +327,9 @@
 
       <div id="petArea">
         <div id="poopContainer"></div>
+        <!-- File: index.html -->
         <div id="petContainer">
+          <div id="clothingContainer"></div>
           <img id="petImg" alt="Your pet" />
         </div>
       </div>

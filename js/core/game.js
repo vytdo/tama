@@ -229,3 +229,70 @@ document
   .getElementById("background3")
   .addEventListener("click", () => purchaseBackground("frenchfries_bg", 2, 3));
 // Add more backgrounds as needed
+
+// File: game.js
+
+// Function to show the background shop and hide the clothing shop
+function showBackgroundShop() {
+  document.getElementById("backgroundShop").style.display = "block";
+  document.getElementById("clothingShop").style.display = "none";
+}
+
+// Function to show the clothing shop and hide the background shop
+function showClothingShop() {
+  document.getElementById("backgroundShop").style.display = "none";
+  document.getElementById("clothingShop").style.display = "block";
+}
+
+// Event listener to switch to background shop when the "Backgrounds" button is clicked
+document
+  .getElementById("shopBackgrounds")
+  .addEventListener("click", showBackgroundShop);
+
+// Event listener to switch to clothing shop when the "Clothing" button is clicked
+document
+  .getElementById("shopClothing")
+  .addEventListener("click", showClothingShop);
+
+// File: game.js
+function purchaseClothing(itemID, cost, imageSrc, imageStyle) {
+  if (pet.coins >= cost) {
+    pet.coins -= cost;
+    pet.updateCoins();
+
+    // Create an image element for the clothing item
+    let clothingImg = document.createElement("img");
+    clothingImg.src = imageSrc;
+    clothingImg.className = "clothing-item-image";
+
+    // Apply additional styles if provided
+    if (imageStyle) {
+      for (let property in imageStyle) {
+        clothingImg.style[property] = imageStyle[property];
+      }
+    }
+
+    // Add the clothing image to the clothing container
+    document.getElementById("clothingContainer").appendChild(clothingImg);
+  } else {
+    alert("You don't have enough coins for this clothing item.");
+  }
+}
+
+document.getElementById("propellerHat").addEventListener("click", () =>
+  purchaseClothing(
+    "propellerHat",
+    10,
+    "./assets/images/clothing/propeller_hat.png",
+    { top: "2px", left: "33px", width: "50px", height: "50px" } // Adjust the width and height as needed
+  )
+);
+
+document
+  .getElementById("whiteSneakers")
+  .addEventListener("click", () => purchaseClothing("whiteSneakers", 15));
+
+// File: game.js
+document.getElementById("exitClothingShop").addEventListener("click", () => {
+  document.getElementById("shopModal").style.display = "none";
+});
