@@ -230,6 +230,9 @@ document
 document
   .getElementById("background3")
   .addEventListener("click", () => purchaseBackground("frenchfries_bg", 2, 3));
+document
+  .getElementById("background4")
+  .addEventListener("click", () => purchaseBackground("soccer_bg", 1, 1));
 // Add more backgrounds as needed
 
 // File: game.js
