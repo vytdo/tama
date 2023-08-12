@@ -1,5 +1,7 @@
 // Create a new pet
 const pet = new Pet();
+// File: game.js
+let inventory = {};
 
 let currentFoodPage = 1;
 const totalFoodPages = 2; // Total number of food pages
@@ -256,9 +258,21 @@ document
 
 // File: game.js
 function purchaseClothing(itemID, cost, imageSrc, imageStyle, isHat) {
+  if (inventory[itemID]) {
+    alert("You already own this clothing item!");
+    return;
+  }
+
   if (pet.coins >= cost) {
     pet.coins -= cost;
     pet.updateCoins();
+
+    // Add the item to the inventory
+    inventory[itemID] = {
+      src: imageSrc,
+      style: imageStyle,
+      isHat: isHat,
+    };
 
     // If it's a hat, remove any existing hats
     if (isHat) {
@@ -331,3 +345,61 @@ document.getElementById("witchHat").addEventListener("click", () =>
 document.getElementById("exitClothingShop").addEventListener("click", () => {
   document.getElementById("shopModal").style.display = "none";
 });
+
+// File: game.js
+document.getElementById("inventory").addEventListener("click", () => {
+  const inventoryItemsDiv = document.getElementById("inventoryItems");
+
+  // Clear previous inventory contents
+  inventoryItemsDiv.innerHTML = "";
+
+  // Loop through the inventory and create buttons for each item
+  for (let itemID in inventory) {
+    let item = inventory[itemID];
+    let itemButton = document.createElement("button");
+    itemButton.innerHTML = `<img src="${item.src}" alt="${itemID}" /> ${itemID}`;
+    itemButton.addEventListener("click", () => {
+      applyClothing(itemID, item.src, item.style, item.isHat);
+    });
+    inventoryItemsDiv.appendChild(itemButton);
+  }
+
+  document.getElementById("inventoryModal").style.display = "block";
+});
+
+document.getElementById("closeInventoryModal").addEventListener("click", () => {
+  document.getElementById("inventoryModal").style.display = "none";
+});
+
+function applyClothing(itemID) {
+  const item = inventory[itemID];
+  if (!item) {
+    alert("You don't own this item!");
+    return;
+  }
+
+  // If it's a hat, remove any existing hats
+  if (item.isHat) {
+    let existingHats = document.querySelectorAll(".hat-item");
+    existingHats.forEach((hat) => hat.remove());
+  }
+
+  // Create an image element for the clothing item
+  let clothingImg = document.createElement("img");
+  clothingImg.src = item.src;
+  clothingImg.className = item.isHat
+    ? "clothing-item-image hat-item"
+    : "clothing-item-image"; // Add "hat-item" class if it's a hat
+
+  // Apply additional styles if provided
+  if (item.style) {
+    for (let property in item.style) {
+      clothingImg.style[property] = item.style[property];
+    }
+  }
+
+  // Add the clothing image to the clothing container
+  document.getElementById("clothingContainer").appendChild(clothingImg);
+}
+
+document.getElementById("inventory").addEventListener("click", showInventory);
