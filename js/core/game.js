@@ -255,15 +255,23 @@ document
   .addEventListener("click", showClothingShop);
 
 // File: game.js
-function purchaseClothing(itemID, cost, imageSrc, imageStyle) {
+function purchaseClothing(itemID, cost, imageSrc, imageStyle, isHat) {
   if (pet.coins >= cost) {
     pet.coins -= cost;
     pet.updateCoins();
 
+    // If it's a hat, remove any existing hats
+    if (isHat) {
+      let existingHats = document.querySelectorAll(".hat-item");
+      existingHats.forEach((hat) => hat.remove());
+    }
+
     // Create an image element for the clothing item
     let clothingImg = document.createElement("img");
     clothingImg.src = imageSrc;
-    clothingImg.className = "clothing-item-image";
+    clothingImg.className = isHat
+      ? "clothing-item-image hat-item"
+      : "clothing-item-image"; // Add "hat-item" class if it's a hat
 
     // Apply additional styles if provided
     if (imageStyle) {
@@ -284,7 +292,8 @@ document.getElementById("propellerHat").addEventListener("click", () =>
     "propellerHat",
     10,
     "./assets/images/clothing/propeller_hat.png",
-    { top: "2px", left: "33px", width: "50px", height: "50px" } // Adjust the width and height as needed
+    { top: "2px", left: "33px", width: "50px", height: "50px" },
+    true // Adjust the width and height as needed
   )
 );
 
@@ -293,7 +302,8 @@ document.getElementById("bucketPropellerHat").addEventListener("click", () =>
     "bucketPropellerHat",
     10,
     "./assets/images/clothing/bucketpropeller_hat.png",
-    { top: "px", left: "39px", width: "55px", height: "55px" } // Adjust the width and height as needed
+    { top: "px", left: "39px", width: "55px", height: "55px" },
+    true // Adjust the width and height as needed
   )
 );
 
@@ -302,7 +312,8 @@ document.getElementById("baseballHat").addEventListener("click", () =>
     "baseballHat",
     12,
     "./assets/images/clothing/baseball_hat.png",
-    { top: "2px", left: "33px", width: "50px", height: "50px" } // Adjust the width and height as needed
+    { top: "2px", left: "33px", width: "50px", height: "50px" },
+    true // Adjust the width and height as needed
   )
 );
 
@@ -311,7 +322,8 @@ document.getElementById("witchHat").addEventListener("click", () =>
     "witchHat",
     12,
     "./assets/images/clothing/witch_hat.png",
-    { top: "0.1px", left: "38px", width: "55px", height: "55px" } // Adjust the width and height as needed
+    { top: "0.1px", left: "38px", width: "55px", height: "55px" },
+    true // Adjust the width and height as needed
   )
 );
 
