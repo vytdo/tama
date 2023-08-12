@@ -1,6 +1,6 @@
 // Create a new pet
 const pet = new Pet();
-// File: game.js
+
 let inventory = {};
 
 let currentFoodPage = 1;
@@ -257,7 +257,9 @@ document
   .addEventListener("click", showClothingShop);
 
 // File: game.js
-function purchaseClothing(itemID, cost, imageSrc, imageStyle, isHat) {
+// File: game.js
+
+function purchaseClothing(itemID, cost, imageSrc, imageStyle, isHat, isBowtie) {
   if (inventory[itemID]) {
     alert("You already own this clothing item!");
     return;
@@ -272,6 +274,7 @@ function purchaseClothing(itemID, cost, imageSrc, imageStyle, isHat) {
       src: imageSrc,
       style: imageStyle,
       isHat: isHat,
+      isBowtie: isBowtie,
     };
 
     // If it's a hat, remove any existing hats
@@ -280,12 +283,20 @@ function purchaseClothing(itemID, cost, imageSrc, imageStyle, isHat) {
       existingHats.forEach((hat) => hat.remove());
     }
 
+    // If it's a bowtie, remove any existing bowties
+    if (isBowtie) {
+      let existingBowties = document.querySelectorAll(".bowtie-item");
+      existingBowties.forEach((bowtie) => bowtie.remove());
+    }
+
     // Create an image element for the clothing item
     let clothingImg = document.createElement("img");
     clothingImg.src = imageSrc;
     clothingImg.className = isHat
       ? "clothing-item-image hat-item"
-      : "clothing-item-image"; // Add "hat-item" class if it's a hat
+      : isBowtie
+      ? "clothing-item-image bowtie-item"
+      : "clothing-item-image"; // Add appropriate class based on item type
 
     // Apply additional styles if provided
     if (imageStyle) {
@@ -342,6 +353,52 @@ document.getElementById("witchHat").addEventListener("click", () =>
 );
 
 // File: game.js
+
+document.getElementById("cuteBowtie").addEventListener("click", () =>
+  purchaseClothing(
+    "cuteBowtie",
+    10,
+    "./assets/images/clothing/cute_bowtie.png",
+    { top: "60px", left: "38px", width: "55px", height: "55px" },
+    false, // Not a hat
+    true // It's a bowtie
+  )
+);
+
+document.getElementById("pinkPolkaBowtie").addEventListener("click", () =>
+  purchaseClothing(
+    "pinkPolkaBowtie",
+    12,
+    "./assets/images/clothing/pinkpolka_bowtie.png",
+    { top: "60px", left: "38px", width: "55px", height: "55px" },
+    false, // Not a hat
+    true // It's a bowtie
+  )
+);
+
+document.getElementById("manlyNavyBlueBowtie").addEventListener("click", () =>
+  purchaseClothing(
+    "manlyNavyBlueBowtie",
+    15,
+    "./assets/images/clothing/navyblue_bowtie.png",
+    { top: "60px", left: "38px", width: "55px", height: "55px" },
+    false, // Not a hat
+    true // It's a bowtie
+  )
+);
+
+document.getElementById("girlyNavyBlueBowtie").addEventListener("click", () =>
+  purchaseClothing(
+    "girlyNavyBlueBowtie",
+    18,
+    "./assets/images/clothing/navybluegirl_bowtie.png",
+    { top: "60px", left: "38px", width: "55px", height: "55px" },
+    false, // Not a hat
+    true // It's a bowtie
+  )
+);
+
+// File: game.js
 document.getElementById("exitClothingShop").addEventListener("click", () => {
   document.getElementById("shopModal").style.display = "none";
 });
@@ -371,6 +428,8 @@ document.getElementById("closeInventoryModal").addEventListener("click", () => {
   document.getElementById("inventoryModal").style.display = "none";
 });
 
+// File: game.js
+
 function applyClothing(itemID) {
   const item = inventory[itemID];
   if (!item) {
@@ -384,12 +443,20 @@ function applyClothing(itemID) {
     existingHats.forEach((hat) => hat.remove());
   }
 
+  // If it's a bowtie, remove any existing bowties
+  if (item.isBowtie) {
+    let existingBowties = document.querySelectorAll(".bowtie-item");
+    existingBowties.forEach((bowtie) => bowtie.remove());
+  }
+
   // Create an image element for the clothing item
   let clothingImg = document.createElement("img");
   clothingImg.src = item.src;
   clothingImg.className = item.isHat
     ? "clothing-item-image hat-item"
-    : "clothing-item-image"; // Add "hat-item" class if it's a hat
+    : item.isBowtie
+    ? "clothing-item-image bowtie-item"
+    : "clothing-item-image"; // Add appropriate class based on item type
 
   // Apply additional styles if provided
   if (item.style) {
